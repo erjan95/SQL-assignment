@@ -1,0 +1,104 @@
+SQL assignment#2
+
+#1
+
+SELECT album.ArtistId AS albums, artist.Name AS Artist_Name, album.Title AS Album_Name
+    FROM albums AS album
+    JOIN artists AS artist ON album.ArtistId = artist.ArtistId
+    ORDER BY Artist_Name
+    ;
+    
+#2
+
+SELECT artists.Name as Artist_Name, COUNT(albums.ArtistId) as Album_Count, albums.Title as Album_Name
+FROM artists
+JOIN albums ON (artists.ArtistId = albums.ArtistId)
+GROUP BY Album_Name
+HAVING Album_Count >= 1
+ORDER BY Album_Name DESC;
+
+
+#3
+
+SELECT artists.Name as Artist_Name FROM artists
+WHERE artists.ArtistId NOT IN (SELECT albums.ArtistId FROM albums)
+ORDER BY Artist_Name;
+
+#4
+
+SELECT artists.Name as Artist_Name, COUNT(albums.ArtistId) as No_of_albums
+FROM artists
+JOIN albums ON (artists.ArtistId = albums.ArtistId)
+GROUP BY Artist_Name
+ORDER BY No_of_albums DESC, Artist_Name ASC;
+
+
+#5
+
+
+SELECT artists.Name as Artist_Name, COUNT(albums.ArtistId) as No_of_albums
+FROM artists
+JOIN albums ON (artists.ArtistId = albums.ArtistId)
+GROUP BY Artist_Name
+HAVING No_of_albums >= 10
+ORDER BY No_of_albums DESC, Artist_Name ASC;
+
+#6
+
+SELECT artists.Name as Artist_Name, COUNT(albums.ArtistId) as No_of_albums
+FROM artists
+JOIN albums ON (artists.ArtistId = albums.ArtistId)
+GROUP BY Artist_Name
+ORDER BY No_of_albums DESC
+LIMIT 3;
+
+#7
+
+SELECT artists.Name as Artist_Name, albums.Title As Album_Title ,tracks.TrackId as Track
+FROM artists
+JOIN tracks
+JOIN albums
+WHERE Artist_Name = 'Santana'
+ORDER BY Track;
+
+#8
+
+SELECT employees.EmployeeId as 'Employee ID',
+    (SELECT employees.FirstName || employees.LastName) AS 'Employee Name',
+    employees.Title AS 'Employee Title',
+    employees.ReportsTo AS 'Manager ID',
+    i.FirstName as 'Manager Name',
+    i.Title as 'Manager Title'
+    FROM employees
+    INNER JOIN employees AS i ON i.EmployeeId = employees.ReportsTo;
+    
+#9
+
+CREATE VIEW top_employees AS
+    SELECT employees.EmployeeId as emp_id,
+    (SELECT employees.FirstName || employees.LastName) AS 'emp_name',
+    COUNT(customers.CustomerID) as cust_count
+    FROM employees
+    JOIN customers
+    ON employees.EmployeeId = customers.SupportRepId
+    ORDER BY emp_name;
+    
+SELECT * FROM top_employees;
+DROP VIEW IF EXISTS top_employees;
+
+
+#10
+
+CREATE TRIGGER trigger_media BEFORE INSERT ON media_types
+    BEGIN
+        SELECT CASE
+            WHEN Name NOT LIKE '%MP3%' THEN
+            RAISE(ABORT, 'cannot be inserted')
+        END;
+    END
+;
+
+
+#11
+
+??
