@@ -168,3 +168,16 @@ CREATE TRIGGER trigger_media BEFORE INSERT ON media_types
 #11
 
 ??
+
+
+
+CREATE TABLE employers (
+    Employer_ID INTEGER PRIMARY KEY,
+    Full_Name TEXT,
+    Joining_Date Date,
+    Current_Position TEXT,
+    Department TEXT,
+    Assigned_Project TEXT
+);
+
+INSERT INTO employers (Department) VALUES ('IT Support');
