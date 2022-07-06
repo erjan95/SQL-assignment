@@ -101,4 +101,29 @@ CREATE TRIGGER trigger_media BEFORE INSERT ON media_types
 
 #11
 
-???
+
+CREATE TABLE tracks_audit_log (
+    operation varchar(100),
+    datetime date,
+    username varchar(100),
+    old_value varchar(100),
+    new_value varchar(100)
+);
+
+CREATE TRIGGER tracks_audit_insert AFTER INSERT ON tracks
+BEGIN
+    INSERT INTO tracks_audit_log (operation, datetime, username, old_value, new_value)
+    VALUES (DATE('now'),OLD.Title,NEW.Title);
+END;
+
+CREATE TRIGGER tracks_audit_update AFTER UPDATE ON tracks
+BEGIN
+    INSERT INTO tracks_audit_log (operation, datetime, username, old_value, new_value)
+    VALUES (DATE('now'),OLD.Title,NEW.Title);
+END;
+
+
+CREATE TRIGGER tracks_audit_delete AFTER DELETE ON tracks
+BEGIN
+    DELETE FROM tracks_audit_log;
+END;
