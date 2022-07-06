@@ -92,7 +92,7 @@ DROP VIEW IF EXISTS top_employees;
 CREATE TRIGGER trigger_media BEFORE INSERT ON media_types
     BEGIN
         SELECT CASE
-            WHEN Name NOT LIKE '%MP3%' THEN
+            WHEN NEW.Name NOT LIKE '%MP3%' THEN
             RAISE(ABORT, 'cannot be inserted')
         END;
     END
@@ -101,4 +101,4 @@ CREATE TRIGGER trigger_media BEFORE INSERT ON media_types
 
 #11
 
-??
+???
