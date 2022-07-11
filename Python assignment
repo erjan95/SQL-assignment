@@ -1,0 +1,43 @@
+#1
+
+
+def count_lett(t):
+
+    n = len(t)
+ 
+    res = 0
+    for i in range(n):
+        for j in range(i, n):
+            if check(i, j):
+                res = max(res, j - i + 1)
+    return res
+
+s = 'abcabcbb'
+d = "bbbbb"
+f = "pwwkew"
+print(count_letters(s))
+print(count_letters(d))
+print(count_letters(f))
+
+
+
+#2
+
+def parenth(N):
+    results = []
+
+    def track(parenthesis, opening, closing):
+        if len(parenthesis) == 2 * N:
+            results.append(parenthesis)
+            return
+
+        if opening < N:
+            track(parenthesis + '(', opening + 1, closing)
+        if closing < opening:
+            track(parenthesis + ')', opening, closing + 1)
+
+    track('', 0, 0)
+    return results
+
+print(parenth(3))
+print(parenth(1))
