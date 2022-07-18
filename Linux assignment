@@ -1,0 +1,23 @@
+TASK 1.
+
+1 . mkdir test
+2. cat > etc_log.txt
+3. ls >> etc_log.txt
+ls – lh
+4. cat > run_log.txt
+ls >> run_log.txt
+ls -lh >> run_log.txt
+5. cat etc_log.txt | ls >> unsorted.txt | cat run_log.txt | ls >> unsorted.txt | ls -lh >> unsorted.txt | tac
+unsorted.txt > reversed.txt
+
+TASK 2.
+
+nano dataLogger.sh
+echo “Store new data in here” >> demand_data.txt (THEN save by pressing CTRL + X, then press Y
+and Enter.) It creates dataLogger.sh.
+Bash dataLogger.sh ( it creates demand_data.txt with “Store new data in here”text in home directory)
+CURRENTDATE= `date +"%Y-%m-%d %T"`
+echo Current Date and Time is: ${CURRENTDATE} >> demands.log
+T
+
+ASK3.
