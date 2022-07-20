@@ -18,6 +18,46 @@ and Enter.) It creates dataLogger.sh.
 Bash dataLogger.sh ( it creates demand_data.txt with “Store new data in here”text in home directory)
 CURRENTDATE= `date +"%Y-%m-%d %T"`
 echo Current Date and Time is: ${CURRENTDATE} >> demands.log
-T
 
-ASK3.
+TASK3.
+
+curl https://www.pgadmin.org/static/packages_pgadmin_org.pub | sudo apt-key add
+       sudo sh -c 'echo "deb https://ftp.postgresql.org/pub/pgadmin/pgadmin4/apt/$(lsb_release -cs) pgadmin4 main" > /etc/apt/sources.list.d/pgadmin4.list && apt update'
+       
+       sudo apt install pgadmin4
+
+sudo -u postgres createuser –interactive
+
+administrator
+
+yes
+
+createdb chinook
+
+psql chinook -1 -f ~/Downloads/chinook_pg_serial_pk_proper_naming.sql &> advanced.txt
+
+psql chinook
+
+chinook=#\d
+
+#!/bin/bash
+
+echo “File $CONFIG”
+
+conffile=$CONFIG
+
+while IFS=read -r line; do
+	line=${line%%#*}
+	case $line in 
+		*=*)
+		     var = ${line%%=*}
+		     case $var in
+			*[!A-Z_a-z]*)
+			   echo “Warning: invalid variable name $var ignored” >&2
+			   continie;;
+echo “Config file $CONFIG”
+
+echo “Host =$port
+	Name = $name
+	Username = $username
+	Password = $password”
