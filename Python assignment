@@ -1,6 +1,5 @@
 #1
 
-
 def count_lett(t):
 
     n = len(t)
@@ -8,16 +7,16 @@ def count_lett(t):
     res = 0
     for i in range(n):
         for j in range(i, n):
-            if check(i, j):
+            if (i, j):
                 res = max(res, j - i + 1)
     return res
 
 s = 'abcabcbb'
 d = "bbbbb"
 f = "pwwkew"
-print(count_letters(s))
-print(count_letters(d))
-print(count_letters(f))
+print(count_lett(s))
+print(count_lett(d))
+print(count_lett(f))
 
 
 
@@ -47,8 +46,7 @@ print(parenth(1))
 
 def checkPalindrome(string): 
       
-    # Returns true if str is palindrome,  
-    # else false 
+    
     length = len(string) 
     length -= 1
     for i in range(length): 
@@ -65,9 +63,6 @@ def printSolution(partitions):
   
 def addStrings(v, s, temp, index): 
       
-    # Goes through all indexes and  
-    # recursively add remaining partitions  
-    # if current string is palindrome. 
     length = len(s) 
     string = "" 
   
@@ -87,14 +82,12 @@ def addStrings(v, s, temp, index):
   
 def partition(s, v): 
       
-    # Generates all palindromic partitions  
-    # of 's' and stores the result in 'v'. 
     temp = [] 
     addStrings(v, s, temp[:], 0) 
     printSolution(v) 
   
-# Driver Code 
+
 if __name__ == "__main__": 
-    s = "aab"
+    s = "abb"
     partitions = [] 
     partition(s, partitions)
