@@ -2,11 +2,11 @@ SQL assignment#2
 
 #1
 
-SELECT album.ArtistId AS albums, artist.Name AS Artist_Name, album.Title AS Album_Name
+SELECT artist.Name AS Artist_Name, album.Title AS Album_Name
     FROM albums AS album
-    JOIN artists AS artist ON album.ArtistId = artist.ArtistId
+    JOIN artists AS artist ON album.AlbumId = artist.ArtistId
     ORDER BY Artist_Name
-    ;
+    ; 
     
 #2
 
