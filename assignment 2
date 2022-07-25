@@ -81,10 +81,13 @@ CREATE VIEW top_employees AS
     FROM employees
     JOIN customers
     ON employees.EmployeeId = customers.SupportRepId
-    ORDER BY emp_name;
+    GROUP BY employees.EmployeeId
+    ORDER BY emp_name
+    LIMIT 1;
     
 SELECT * FROM top_employees;
 DROP VIEW IF EXISTS top_employees;
+
 
 
 #10
@@ -101,29 +104,22 @@ CREATE TRIGGER trigger_media BEFORE INSERT ON media_types
 
 #11
 
-
 CREATE TABLE tracks_audit_log (
-    operation varchar(100),
+    operation varchar(80),
     datetime date,
-    username varchar(100),
-    old_value varchar(100),
-    new_value varchar(100)
+    username varchar(80),
+    old_value varchar(80),
+    new_value varchar(80)
 );
 
-CREATE TRIGGER tracks_audit_insert AFTER INSERT ON tracks
+CREATE TRIGGER tracks_audit AFTER INSERT ON tracks
 BEGIN
     INSERT INTO tracks_audit_log (operation, datetime, username, old_value, new_value)
-    VALUES (DATE('now'),OLD.Title,NEW.Title);
+    VALUES ('insert',DATE('now'),'admin',OLD.Title,NEW.Title);
 END;
 
 CREATE TRIGGER tracks_audit_update AFTER UPDATE ON tracks
 BEGIN
     INSERT INTO tracks_audit_log (operation, datetime, username, old_value, new_value)
-    VALUES (DATE('now'),OLD.Title,NEW.Title);
-END;
-
-
-CREATE TRIGGER tracks_audit_delete AFTER DELETE ON tracks
-BEGIN
-    DELETE FROM tracks_audit_log;
+    VALUES ('insert',DATE('now'),'admin',OLD.Title,NEW.Title);
 END;
